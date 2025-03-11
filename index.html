@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Dinosaur Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e9;
+            color: #2c3e50;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        #factDisplay {
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        #factDisplay.fade-in {
+            opacity: 1;
+        }
+
+        #factDisplay {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Dinosaur Facts</h1>
+        <button id="factButton">Get a Random Fact</button>
+        <p id="factDisplay"></p>
+        <button id="whatsappButton">Share on WhatsApp</button>
+    </div>
+    <script>
+        const facts = [
+            "Dinosaurs roamed the Earth for over 160 million years.",
+            "The word 'dinosaur' means 'terrible lizard' in Greek.",
+            "Some dinosaurs were as small as chickens, like the Compsognathus.",
+            "The largest dinosaur ever discovered is the Argentinosaurus, which could reach lengths of over 100 feet.",
+            "Dinosaurs are divided into two main groups: Saurischia and Ornithischia.",
+            "The Stegosaurus had a brain the size of a walnut.",
+            "The Tyrannosaurus rex had the strongest bite of any land animal that ever lived.",
+            "Some dinosaurs, like the Velociraptor, were covered in feathers.",
+            "The Triceratops had three horns and a large bony frill on its head.",
+            "Dinosaurs laid eggs, and some species built nests and cared for their young.",
+            "The Brachiosaurus had longer front legs than back legs, giving it a giraffe-like stance.",
+            "The Ankylosaurus was heavily armored and had a large club-like tail.",
+            "The first dinosaur fossil was discovered in 1824 by William Buckland.",
+            "Dinosaurs lived on all continents, including Antarctica.",
+            "The extinction of dinosaurs occurred about 65 million years ago, likely due to a massive asteroid impact."
+        ];
+
+        document.getElementById('factButton').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.textContent = facts[randomIndex];
+            factDisplay.classList.add('fade-in');
+            setTimeout(() => factDisplay.classList.remove('fade-in'), 500);
+        });
+
+        document.getElementById('whatsappButton').addEventListener('click', () => {
+            const fact = document.getElementById('factDisplay').textContent;
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(fact)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
